@@ -13,17 +13,17 @@ download.onclick = () => {
     //beofre request you can use preloader here
     percent.innerHTML = 'Dowloading...'
     progressBar.style.width = '0%'
-    // var startTime = new Date().getTime()
+    var startTime = new Date().getTime()
 
     xhr.onreadystatechange = () => {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 //return file as blob here
                 console.log(xhr.response);
-                // var a = document.createElement('a')
-                // a.href = window.URL.createObjectURL(xhr.response)
+                var a = document.createElement('a')
+                a.href = window.URL.createObjectURL(xhr.response)
                 // a.download = ''
-                // a.click()
+                a.click()
             } else {
                 console.log('Error! Try again');
             }
@@ -32,24 +32,24 @@ download.onclick = () => {
     xhr.onprogress = (e) => {
         //get progress here
         console.log(e);
-        // var percent_complete = (e.loaded / e.total) * 100
-        // var mbTotal = Math.floor(e.total / (1024 * 1024))
-        // var mbLoaded = Math.floor(e.loaded / (1024 * 1024))
+        var percent_complete = (e.loaded / e.total) * 100
+        var mbTotal = Math.floor(e.total / (1024 * 1024))
+        var mbLoaded = Math.floor(e.loaded / (1024 * 1024))
 
-        // var time = (new Date().getTime() - startTime) / 1000
-        // var bps = e.loaded / time
-        // var kbps = Math.floor(bps / 1024)
+        var time = (new Date().getTime() - startTime) / 1000
+        var bps = e.loaded / time
+        var kbps = Math.floor(bps / 1024)
 
-        // var remTime = (e.total - e.loaded) / bps
-        // var seconds = Math.floor(remTime % 60)
-        // var minutes = Math.floor(remTime / 60)
+        var remTime = (e.total - e.loaded) / bps
+        var seconds = Math.floor(remTime % 60)
+        var minutes = Math.floor(remTime / 60)
 
-        // //give output
-        // dataTrnsfered.innerHTML = `${mbLoaded}/${mbTotal} Mb`
-        // kbps.innerHTML = `${kbps} Kbps`
-        // timeleft.innerHTML = `${minutes}:${seconds}s`
-        // percent.innerHTML = `${Math.floor(percent_complete)} %`
-        // progressBar.style.width = percent_complete + '%'
+        //give output
+        dataTrnsfered.innerHTML = `${mbLoaded}/${mbTotal} Mb`
+        kbps.innerHTML = `${kbps} Kbps`
+        timeleft.innerHTML = `${minutes}:${seconds}s`
+        percent.innerHTML = `${Math.floor(percent_complete)} %`
+        progressBar.style.width = percent_complete + '%'
     }
     //for cancel function
     xhr.onabort = () => {
